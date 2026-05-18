@@ -1,19 +1,40 @@
 # Entrada de dados (com restrições)
 
 nome = str(input("Digite o seu nome: "))
+
 destino = str(input("Digite o seu país de destino: "))
+
 orçamento = float(input("Digite o orçamento disponível para a viagem em reais: "))
+if orçamento < 0:
+    raise(ValueError("Ops, parece que você digitou um valor inválido! Digite um número positivo!"))
+
 qtd_dias = int(input("Digite a duração da viagem em dias: "))
+if qtd_dias <= 0:
+    raise(ValueError("Ops, parece que você digitou um valor inválido! Digite um número positivo!"))
+
 
 passagem = float(input("Digite o valor da passagem aérea em reais: "))
+if passagem < 0:
+    raise(ValueError("Ops, parece que você digitou um valor inválido! Digite um número positivo!"))
+
 hospedagem_diária_EUR = float(input("Digite o custo diário de hospedagem em euros: "))
+if hospedagem_diária_EUR < 0:
+    raise(ValueError("Ops, parece que você digitou um valor inválido! Digite um número positivo!"))
+
 alimentação_diária_USD = float(input("Digite o custo diário de alimentação em dólares: "))
+if alimentação_diária_USD < 0:
+    raise(ValueError("Ops, parece que você digitou um valor inválido! Digite um número positivo!"))
+
 lazer_GBP = float(input("Digite o valor total reservado para lazer em libras esterlinas: "))
+if lazer_GBP < 0:
+    raise(ValueError("Ops, parece que você digitou um valor inválido! Digite um número positivo!"))
 
-hospedagem = str(input("Informe o tipo de hospedagem (hotel ou hostel): "))
-if hospedagem == "hotel":
-    raise(ValueError("Ops, parece que você digitou uma opção inválida! Escolha entre hotel ou hostel!"))
-
+while True: 
+    hospedagem = str(input("Informe o tipo de hospedagem (hotel ou hostel): "))
+    if hospedagem == "hotel" or hospedagem == "hostel":
+        break
+    else:
+        raise(ValueError("Ops, parece que você digitou uma opção inválida! Escolha entre hotel ou hostel!"))
 
 # Conversão monetária para reais
 
@@ -44,7 +65,7 @@ if custo_parcial > 15000:
 else: 
     taxa = 0
 
-custo_total = custo_parcial * taxa
+custo_total = custo_parcial + taxa
 
 # Validação do orçamento e viabilidade da viagem
 
@@ -90,6 +111,6 @@ else:
     print("O status da viagem é inviável")
 
 if falta == True:
-    print(f"Faltam {round(abs(diferença), 2)} reais para cobrir os custos da viagem.")
+    print(f"Faltaram {round(abs(diferença), 2)} reais para cobrir os custos da viagem.")
 else:
     print(f"Sobraram {round(diferença,2)} reais do orçamento disponível para a viagem.")
